@@ -28,10 +28,10 @@ fi
 
 # default variables
 if [ -z "${SEAPATH_BASE_REPO}" ] ; then
-    SEAPATH_BASE_REPO="github.com/seapath"
+    SEAPATH_BASE_REPO="github.com/insatomcat"
 fi
 if [ -z "${SEAPATH_SSH_BASE_REPO}" ] ; then
-    SEAPATH_SSH_BASE_REPO="git@github.com:seapath"
+    SEAPATH_SSH_BASE_REPO="git@github.com:insatomcat"
 fi
 if [ -z "${REPO_PRIVATE_KEYFILE}" ] ; then
   REPO_PRIVATE_KEYFILE=inventories_private/ci_rsa
@@ -92,7 +92,7 @@ initialization() {
   fi
 
   # Get sources
-  git clone -q "https://${SEAPATH_BASE_REPO}/ansible"
+  git clone -q "https://${SEAPATH_BASE_REPO}/seapath-ansible" ansible
   cd ansible
   git fetch -q origin "${GITHUB_REF}"
   git checkout -q FETCH_HEAD
@@ -258,7 +258,7 @@ generate_report() {
   # Otherwise, it just have to be switched on.
   git clone -q --depth 1 -b reports-base-commit \
     --config core.sshCommand="ssh -i ~/.ssh/ci_rsa" \
-    "${SEAPATH_SSH_BASE_REPO}/ci.git" "$WORK_DIR/reports"
+    "${SEAPATH_SSH_BASE_REPO}/seapath-ci.git" "$WORK_DIR/reports"
   cd "$WORK_DIR/reports"
   if ! git ls-remote origin "$REPORT_BRANCH" | grep -q "$REPORT_BRANCH"; then
     git branch "$REPORT_BRANCH"
@@ -278,7 +278,7 @@ generate_report() {
   echo "Test report uploaded successfully"
 
   echo See test Report at \
-  "https://${SEAPATH_BASE_REPO}/ci/blob/${REPORT_BRANCH}/docs/reports/PR-${PR_N}/${REPORT_NAME}"
+  "https://${SEAPATH_BASE_REPO}/seapath-ci/blob/${REPORT_BRANCH}/docs/reports/PR-${PR_N}/${REPORT_NAME}"
 }
 
 case "$1" in

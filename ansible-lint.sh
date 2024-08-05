@@ -32,7 +32,7 @@ initialization() {
   fi
 
   # Get sources
-  git clone -q https://github.com/seapath/ansible
+  git clone -q https://github.com/insatomcat/seapath-ansible ansible
   cd ansible
   git fetch -q origin ${GITHUB_REF}
   git checkout -q FETCH_HEAD
