@@ -269,7 +269,7 @@ generate_report() {
 
   mkdir -p "$REPORT_DIR"
   mv "${WORK_DIR}"/ci/test-report-pdf/test-report.pdf "$REPORT_DIR/$REPORT_NAME"
-  git config --local user.email "ci.seapath@gmail.com"
+  git config --local user.email "ci.insatomcat@gmail.com"
   git config --local user.name "Seapath CI"
   git config --local core.sshCommand "ssh -i ~/.ssh/ci_rsa"
   git add "$REPORT_DIR/$REPORT_NAME"
